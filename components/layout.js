@@ -1,71 +1,109 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import { CSSTransition } from 'react-transition-group';
+import { useState, useEffect } from 'react';
 
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
+
 const name = 'Jakub Brych'
+const imageUrls = ['tree.jpg', 'tree2.jpg', 'tree3.jpg', 'tree4.jpg', 'tree5.jpg', 'tree6.jpg','tree7.jpg'];
+const transitionClassNames = {
+  enter: styles.fadeEnter,
+  enterActive: styles.fadeEnterActive,
+  exit: styles.fadeExit,
+  exitActive: styles.fadeExitActive,
+};
 export const siteTitle = 'Next.js portfolio'
 
 export default function Layout({ children, home }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+ useEffect(() => {
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setCurrentIndex(Math.floor(Math.random() * imageUrls.length));
+    }, 2500); 
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleTransitionEnd = () => {
+    setIsTransitioning(false);
+  };
+  const currentImage = imageUrls[currentIndex];
+
   return (
+    
     <div className={styles.container}>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Learn how to build a personal website using Next.js"
-        />
-        <meta
-          property="og:image"
-          content={`https://og-image.vercel.app/${encodeURI(
-            siteTitle
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.zeit.co%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-        />
-        <meta name="og:title" content={siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-   
+      
       <header className={styles.header}>
-        {home ? (
-          <>
-            <Image
-              priority
-              src="/images/profile.jpg"
-              className={utilStyles.borderCircle}
-              height={144}
-              width={144}
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : (
-          <>
-            <Link href="/">
+    {home ? (
+      <CSSTransition
+        in={true}
+        timeout={300}
+        classNames="fade"
+        appear={true}
+        unmountOnExit
+      >
+        <>
+          <Image
+            priority
+            src="/images/profile.jpg"
+            className={utilStyles.borderCircle}
+            height={144}
+            width={144}
+            alt={name}
+          />
+          <h1 className={utilStyles.heading2Xl}>{name}</h1>
+        </>
+      </CSSTransition>
+    ) : (
+      <>
+            <div className={styles.backToHome}>
+              <Link href="/">← Zpět na hlavní stránku</Link>
+            </div>
+            <div className={styles.imageContainer}>
+          <CSSTransition
+            in={true}
+            timeout={300}
+            classNames={transitionClassNames}
+            appear
+            unmountOnExit
+          >
+            <div className={styles.imageWrapper}>
               <Image
                 priority
-                src="/images/profile.jpg"
-                className={utilStyles.borderCircle}
-                height={108}
-                width={108}
+                src={`/images/${currentImage}`}
+                className={`${utilStyles.borderCircle} ${isTransitioning ? styles.fade : ''}`}
+                height={144}
+                width={144}
                 alt={name}
+                onTransitionEnd={handleTransitionEnd}
               />
-            </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/" className={utilStyles.colorInherit}>
-                {name}
-              </Link>
-            </h2>
+            </div>
+          </CSSTransition>
+        </div>
+            
           </>
         )}
       </header>
-      <main>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">← Zpět na hlavní stránku</Link>
-        </div>
-      )}
+      <CSSTransition
+        in={true}
+        timeout={300}
+        classNames="fade"
+        appear
+        unmountOnExit
+      >
+      <center>
+      <main>
+        {children}
+       
+      </main>
+      </center>
+      </CSSTransition>
     </div>
-  )
+  );
 }

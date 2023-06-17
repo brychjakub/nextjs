@@ -2,6 +2,9 @@ import React from "react";
 import YouTube from "react-youtube";
 import styles from '../../styles/youtubeVideo.module.css';
 import Link from 'next/link'
+import utilStyles from '../../styles/utils.module.css'
+import Layout from "../../components/layout";
+
   
 export default class YoutubeVideo 
 extends React.Component {
@@ -14,7 +17,8 @@ extends React.Component {
       },
     };
     return (
-      <div>
+      <Layout>
+      <div className={utilStyles.headingMd}>
         <center>
 
          <p> Původně psané v Excelu pro lokální přístupnost, nakonec ale převedený program do webového prostředí za pomoci JS, HTML a CSS. Takto mohou své výsledky všichni zjistit hned po dokončení práce. Zdrojový kód je opět na <a href="https://github.com/brychjakub/psychoFinal">GitHubu</a> a na <a href="https://brych.pythonanywhere.com/psychologie.html">mých stránkách</a> se můžete podívat na celý projekt.</p>
@@ -23,10 +27,9 @@ extends React.Component {
             opts={opts} onReady={this._onReady} />
             </div>
             </center>
-            <div className={styles.backToHome}>
-          <Link href="/">← Zpět na hlavní stránku</Link>
-        </div>
+           
       </div>
+      </Layout>
     );
   }
   

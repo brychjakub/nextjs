@@ -2,7 +2,9 @@ import React from "react";
 import YouTube from "react-youtube";
 import styles from '../../styles/youtubeVideo.module.css';
 import Link from 'next/link'
-  
+import utilStyles from '../../styles/utils.module.css'
+import Layout from "../../components/layout";
+
 export default class YoutubeVideo 
 extends React.Component {
   render() {
@@ -14,7 +16,8 @@ extends React.Component {
       },
     };
     return (
-      <div>
+      <Layout>
+      <div className={utilStyles.headingMd}>
         <center>
          <p> Krátká a rychlá hra "Space Shooter", vytvořená k vyzkoušení znalostí Pythonu v knihovně pygame.
 Zdrojový kód pro hru je opět na <a href="https://github.com/brychjakub/SpaceShooter.git">GitHubu</a>, tam naleznete i .rar s .exe souborem, pokud byste si chtěli hru zahrát.</p>
@@ -23,10 +26,8 @@ Zdrojový kód pro hru je opět na <a href="https://github.com/brychjakub/SpaceS
             opts={opts} onReady={this._onReady} />
             </div>
             </center>
-            <div className={styles.backToHome}>
-          <Link href="/">← Zpět na hlavní stránku</Link>
-        </div>
       </div>
+      </Layout>
     );
   }
   
