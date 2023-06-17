@@ -1,13 +1,12 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Script from 'next/script'
 
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
 const name = 'Jakub Brych'
-export const siteTitle = 'Next.js Sample Website'
+export const siteTitle = 'Next.js portfolio'
 
 export default function Layout({ children, home }) {
   return (
@@ -27,13 +26,7 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <Script
-        src="https://connect.facebook.net/en_US/sdk.js"
-        strategy="lazyOnload"
-        onLoad={() =>
-          console.log(`script loaded correctly, window.FB has been populated`)
-        }
-      />
+   
       <header className={styles.header}>
         {home ? (
           <>
@@ -70,7 +63,7 @@ export default function Layout({ children, home }) {
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
-          <Link href="/">← Back to home</Link>
+          <Link href="/">← Zpět na hlavní stránku</Link>
         </div>
       )}
     </div>
