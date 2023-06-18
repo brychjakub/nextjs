@@ -1,11 +1,10 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import { CSSTransition } from 'react-transition-group';
 import { useState, useEffect } from 'react';
-
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import { FaDev, FaGithub, FaLinkedinIn } from 'react-icons/fa'
 
 
 const name = 'Jakub Brych'
@@ -16,6 +15,13 @@ const transitionClassNames = {
   exit: styles.fadeExit,
   exitActive: styles.fadeExitActive,
 };
+
+const variants = {
+  hidden: { opacity: 0, x: -200, y: 0 },
+  enter: { opacity: 1, x: 0, y: 0 },
+  exit: { opacity: 0, x: 0, y: -100 },
+}
+
 export const siteTitle = 'Next.js portfolio'
 
 export default function Layout({ children, home }) {
@@ -26,7 +32,7 @@ export default function Layout({ children, home }) {
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setCurrentIndex(Math.floor(Math.random() * imageUrls.length));
-    }, 2500); 
+    }, 2000); 
     return () => clearInterval(interval);
   }, []);
 
@@ -43,7 +49,7 @@ export default function Layout({ children, home }) {
     {home ? (
       <CSSTransition
         in={true}
-        timeout={300}
+        timeout={500}
         classNames="fade"
         appear={true}
         unmountOnExit
@@ -65,10 +71,62 @@ export default function Layout({ children, home }) {
             <div className={styles.backToHome}>
               <Link href="/">← Zpět na hlavní stránku</Link>
             </div>
-            <div className={styles.imageContainer}>
+            
+            
+          </>
+        )}
+      </header>
+      <CSSTransition
+        in={true}
+        timeout={300}
+        classNames="fade"
+        appear
+        unmountOnExit
+      >
+      <center>
+
+      <main>
+        {children}
+       
+      </main>
+
+      </center>
+      </CSSTransition>
+      <footer className={styles.footer}>
+      <div className={styles.footerContent}>
+
+      <a
+        href="https://brych.pythonanywhere.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.footerLink}
+      >
+          <img src="/images/dog.ico" alt="Portfolio" className={styles.footerIcon} />
+
+      </a>
+      <a
+        href="https://www.linkedin.com/in/jakub-brych-b4a06113b/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.footerLink}
+        
+      >
+          <FaLinkedinIn /> 
+      </a>
+      <a
+        href="https://github.com/brychjakub"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.footerLink}
+      >
+        <FaGithub />
+        
+      </a>
+      </div>
+      <div className={styles.imageContainer}>
           <CSSTransition
             in={true}
-            timeout={300}
+            timeout={500}
             classNames={transitionClassNames}
             appear
             unmountOnExit
@@ -86,24 +144,10 @@ export default function Layout({ children, home }) {
             </div>
           </CSSTransition>
         </div>
-            
-          </>
-        )}
-      </header>
-      <CSSTransition
-        in={true}
-        timeout={300}
-        classNames="fade"
-        appear
-        unmountOnExit
-      >
-      <center>
-      <main>
-        {children}
-       
-      </main>
-      </center>
-      </CSSTransition>
+      </footer>
     </div>
+    // add a footer with my linkedin and github and webpages
+    
+
   );
 }
