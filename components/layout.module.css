@@ -13,3 +13,42 @@
 .backToHome {
   margin: 3rem 0 0;
 }
+.fadeEnter {
+  opacity: 0;
+}
+
+.fadeEnterActive {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+.fadeExit {
+  opacity: 1;
+}
+
+.fadeExitActive {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.content {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  align-items: center;
+
+}
+
+.imageContainer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
