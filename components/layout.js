@@ -68,8 +68,16 @@ export default function Layout({ children, home }) {
       </CSSTransition>
     ) : (
       <>
-            <div className={styles.backToHome}>
-              <Link href="/">← Zpět na hlavní stránku</Link>
+        <div className={styles.navbar}>
+        <Link className={styles.navbarLink} href="/">← Domů</Link>
+
+        <Link href="/projects/hra" className={styles.navbarLink}>
+            Projekt Hra
+          </Link>
+          <Link href="/projects/jednoduchost" className={styles.navbarLink}>
+            Projekt Jednoduchost
+          </Link>
+          
             </div>
             
             
