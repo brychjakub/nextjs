@@ -50,3 +50,11 @@
 .lightText {
   color: #666;
 }
+.emoji {
+  width: 30%;
+margin-top: 20px;
+}
+.spaceship {
+  width: 70px;
+margin-top: 20px;
+}

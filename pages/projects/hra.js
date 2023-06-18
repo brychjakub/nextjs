@@ -19,6 +19,8 @@ extends React.Component {
       <Layout>
       <div className={utilStyles.headingMd}>
         <center>
+        <img src="/images/spaceship.png" alt="Portfolio" className={utilStyles.spaceship}/>
+
          <p> Krátká a rychlá hra "Space Shooter", vytvořená k vyzkoušení znalostí Pythonu v knihovně pygame.
 Zdrojový kód pro hru je opět na <a href="https://github.com/brychjakub/SpaceShooter.git">GitHubu</a>, tam naleznete i .rar s .exe souborem, pokud byste si chtěli hru zahrát.</p>
       <div className={styles.container}>
