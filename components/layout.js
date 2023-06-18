@@ -76,7 +76,7 @@ export default function Layout({ children, home }) {
              <img src="/images/spaceship.png" alt="Portfolio" className={styles.headerIcon}/>
 
           </Link>
-          <Link href="/projects/jednoduchost" className={styles.navbarLink}>
+          <Link href="/projects/volba" className={styles.navbarLink}>
             <img src="/images/decision.png" alt="Portfolio" className={styles.headerIcon}/>
 
           </Link>

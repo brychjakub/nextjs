@@ -48,6 +48,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
+  position: relative;
 }
 
 .navbar {
@@ -71,11 +73,13 @@
   margin-left: 30px;
   margin-top: 10px;
   transition: box-shadow 0.3s ease;
+  padding: 0;
+
 
 }
 
 .navbarLink:hover {
-  box-shadow: 5px 5px 0px rgba(19, 46, 19, 0.3);
+  box-shadow: 3px 3px 0px rgba(19, 46, 19, 0.3);
 
 }
 
