@@ -19,6 +19,8 @@ extends React.Component {
     return (
       <Layout>
       <div className={utilStyles.headingMd}>
+      <img src="/images/decision.png" alt="Portfolio" className={utilStyles.emoji}/>
+
         <center>
 
          <p> Původně psané v Excelu pro lokální přístupnost, nakonec ale převedený program do webového prostředí za pomoci JS, HTML a CSS. Takto mohou své výsledky všichni zjistit hned po dokončení práce. Zdrojový kód je opět na <a href="https://github.com/brychjakub/psychoFinal">GitHubu</a> a na <a href="https://brych.pythonanywhere.com/psychologie.html">mých stránkách</a> se můžete podívat na celý projekt.</p>

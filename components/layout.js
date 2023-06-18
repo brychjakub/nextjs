@@ -69,13 +69,16 @@ export default function Layout({ children, home }) {
     ) : (
       <>
         <div className={styles.navbar}>
-        <Link className={styles.navbarLink} href="/">← Domů</Link>
+        <Link className={styles.navbarLink} href="/"><img src="/images/arrow.png" alt="Portfolio" className={styles.headerIcon}/>
+</Link>
 
         <Link href="/projects/hra" className={styles.navbarLink}>
-            Projekt Hra
+             <img src="/images/spaceship.png" alt="Portfolio" className={styles.headerIcon}/>
+
           </Link>
           <Link href="/projects/jednoduchost" className={styles.navbarLink}>
-            Projekt Jednoduchost
+            <img src="/images/decision.png" alt="Portfolio" className={styles.headerIcon}/>
+
           </Link>
           
             </div>
