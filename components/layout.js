@@ -17,6 +17,20 @@ export default function Layout({ children, home }) {
     setIsMounted(true);
   }, []);
 
+
+  const fadeVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
+
   const slideInVariants = {
     hidden: {
       x: '100%',
@@ -30,6 +44,7 @@ export default function Layout({ children, home }) {
     },
   };
 
+  
   const slideInFromLeftVariants = {
     hidden: {
       x: '-100%',
@@ -46,14 +61,12 @@ export default function Layout({ children, home }) {
   return (
     <div className={styles.container}>
         {home ? (
-          <CSSTransition
-          
-            in={true}
-            timeout={500}
-            classNames="fade"
-            appear={true}
-            unmountOnExit
-          >
+             <motion.div
+             className={styles.header}
+             initial="hidden"
+             animate={isMounted ? 'visible' : 'hidden'}
+             variants={fadeVariants}
+           >
                    <header className={styles.header}>
 
             <>
@@ -68,8 +81,9 @@ export default function Layout({ children, home }) {
               <h1 className={utilStyles.heading2Xl}>{name}</h1>
             </>
             </header>
+            </motion.div>
 
-          </CSSTransition>
+
         ) : (
           <>
          
@@ -110,18 +124,17 @@ export default function Layout({ children, home }) {
           </>
         )}
 
-      <CSSTransition
-        in={true}
-        timeout={300}
-        classNames="fade"
-        appear
-        unmountOnExit
-      >
         <center>
           
-            {children}
+        <motion.main
+        className={styles.content}
+        initial="hidden"
+        animate={isMounted ? 'visible' : 'hidden'}
+        variants={fadeVariants}
+      >
+        {children}
+      </motion.main>
         </center>
-      </CSSTransition>
 
       <motion.footer
         className={styles.footer}
