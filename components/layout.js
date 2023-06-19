@@ -134,7 +134,7 @@ export default function Layout({ children, home }) {
         
       </a>
       </div>
-      <div className={styles.imageContainer}>
+      {/* <div className={styles.imageContainer}>
           <CSSTransition
             in={true}
             timeout={500}
@@ -154,7 +154,7 @@ export default function Layout({ children, home }) {
               />
             </div>
           </CSSTransition>
-        </div>
+        </div> */}
       </footer>
     </div>
     // add a footer with my linkedin and github and webpages
