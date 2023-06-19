@@ -1,92 +1,115 @@
-import Image from 'next/image'
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { CSSTransition } from 'react-transition-group';
+import styles from './layout.module.css';
+import utilStyles from '../styles/utils.module.css';
+import Link from 'next/link';
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
-import { FaDev, FaGithub, FaLinkedinIn } from 'react-icons/fa'
 
-
-const name = 'Jakub Brych'
-const imageUrls = ['tree.jpg', 'tree2.jpg', 'tree3.jpg', 'tree4.jpg', 'tree5.jpg', 'tree6.jpg','tree7.jpg'];
-const transitionClassNames = {
-  enter: styles.fadeEnter,
-  enterActive: styles.fadeEnterActive,
-  exit: styles.fadeExit,
-  exitActive: styles.fadeExitActive,
-};
-
-const variants = {
-  hidden: { opacity: 0, x: -200, y: 0 },
-  enter: { opacity: 1, x: 0, y: 0 },
-  exit: { opacity: 0, x: 0, y: -100 },
-}
-
-export const siteTitle = 'Next.js portfolio'
+const name = 'Jakub Brych';
+export const siteTitle = 'Next.js portfolio';
 
 export default function Layout({ children, home }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
- useEffect(() => {
-    const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setCurrentIndex(Math.floor(Math.random() * imageUrls.length));
-    }, 2000); 
-    return () => clearInterval(interval);
+  useEffect(() => {
+    setIsMounted(true);
   }, []);
 
-  const handleTransitionEnd = () => {
-    setIsTransitioning(false);
+  const slideInVariants = {
+    hidden: {
+      x: '100%',
+    },
+    visible: {
+      x: '0%',
+      transition: {
+        duration: 0.5,
+        type: 'tween',
+      },
+    },
   };
-  const currentImage = imageUrls[currentIndex];
+
+  const slideInFromLeftVariants = {
+    hidden: {
+      x: '-100%',
+    },
+    visible: {
+      x: '0%',
+      transition: {
+        duration: 0.5,
+        type: 'tween',
+      },
+    },
+  };
 
   return (
-    
     <div className={styles.container}>
-      
-      <header className={styles.header}>
-    {home ? (
-      <CSSTransition
-        in={true}
-        timeout={500}
-        classNames="fade"
-        appear={true}
-        unmountOnExit
-      >
-        <>
-          <Image
-            priority
-            src="/images/profile.jpg"
-            className={utilStyles.borderCircle}
-            height={144}
-            width={144}
-            alt={name}
-          />
-          <h1 className={utilStyles.heading2Xl}>{name}</h1>
-        </>
-      </CSSTransition>
-    ) : (
-      <>
-        <div className={styles.navbar}>
-        <Link className={styles.navbarLink} href="/"><img src="/images/arrow.png" alt="Portfolio" className={styles.headerIcon}/>
-</Link>
-
-        <Link href="/projects/hra" className={styles.navbarLink}>
-             <img src="/images/spaceship.png" alt="Portfolio" className={styles.headerIcon}/>
-
-          </Link>
-          <Link href="/projects/volba" className={styles.navbarLink}>
-            <img src="/images/decision.png" alt="Portfolio" className={styles.headerIcon}/>
-
-          </Link>
+        {home ? (
+          <CSSTransition
           
-            </div>
+            in={true}
+            timeout={500}
+            classNames="fade"
+            appear={true}
+            unmountOnExit
+          >
+                   <header className={styles.header}>
+
+            <>
+              <Image
+                priority
+                src="/images/profile.jpg"
+                className={utilStyles.borderCircle}
+                height={144}
+                width={144}
+                alt={name}
+              />
+              <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            </>
+            </header>
+
+          </CSSTransition>
+        ) : (
+          <>
+         
             
-            
+            <motion.div
+        className={styles.navbar}
+        initial="hidden"
+        animate={isMounted ? 'visible' : 'hidden'}
+        variants={slideInFromLeftVariants}
+      >
+        <div className={styles.navbar}>
+              <Link className={styles.navbarLink} href="/">
+                <img
+                  src="/images/arrow.png"
+                  alt="Portfolio"
+                  className={styles.headerIcon}
+                />
+              </Link>
+
+              <Link href="/projects/hra" className={styles.navbarLink}>
+                <img
+                  src="/images/spaceship.png"
+                  alt="Portfolio"
+                  className={styles.headerIcon}
+                />
+              </Link>
+              <Link href="/projects/volba" className={styles.navbarLink}>
+                <img
+                  src="/images/decision.png"
+                  alt="Portfolio"
+                  className={styles.headerIcon}
+                />
+              </Link>
+              </div>
+
+              </motion.div>
+
           </>
         )}
-      </header>
+
       <CSSTransition
         in={true}
         timeout={300}
@@ -94,71 +117,49 @@ export default function Layout({ children, home }) {
         appear
         unmountOnExit
       >
-      <center>
-
-      <main>
-        {children}
-       
-      </main>
-
-      </center>
+        <center>
+          
+            {children}
+        </center>
       </CSSTransition>
-      <footer className={styles.footer}>
-      <div className={styles.footerContent}>
 
-      <a
-        href="https://brych.pythonanywhere.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.footerLink}
+      <motion.footer
+        className={styles.footer}
+        initial="hidden"
+        animate={isMounted ? 'visible' : 'hidden'}
+        variants={slideInVariants}
       >
-          <img src="/images/dog.ico" alt="Portfolio" className={styles.footerIcon} />
-
-      </a>
-      <a
-        href="https://www.linkedin.com/in/jakub-brych-b4a06113b/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.footerLink}
-        
-      >
-          <FaLinkedinIn /> 
-      </a>
-      <a
-        href="https://github.com/brychjakub"
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.footerLink}
-      >
-        <FaGithub />
-        
-      </a>
-      </div>
-      {/* <div className={styles.imageContainer}>
-          <CSSTransition
-            in={true}
-            timeout={500}
-            classNames={transitionClassNames}
-            appear
-            unmountOnExit
+        <div className={styles.footerContent}>
+          <a
+            href="https://brych.pythonanywhere.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.footerLink}
           >
-            <div className={styles.imageWrapper}>
-              <Image
-                priority
-                src={`/images/${currentImage}`}
-                className={`${utilStyles.borderCircle} ${isTransitioning ? styles.fade : ''}`}
-                height={144}
-                width={144}
-                alt={name}
-                onTransitionEnd={handleTransitionEnd}
-              />
-            </div>
-          </CSSTransition>
-        </div> */}
-      </footer>
+            <img
+              src="/images/dog.ico"
+              alt="Portfolio"
+              className={styles.footerIcon}
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/jakub-brych-b4a06113b/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.footerLink}
+          >
+            <FaLinkedinIn />
+          </a>
+          <a
+            href="https://github.com/brychjakub/nextjs.git"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.footerLink}
+          >
+            <FaGithub />
+          </a>
+        </div>
+      </motion.footer>
     </div>
-    // add a footer with my linkedin and github and webpages
-    
-
   );
 }

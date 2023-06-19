@@ -13,7 +13,7 @@ export default function Home({ allPostsData }) {
       <section className={utilStyles.headingMd}>
         <p>Zdravíčko! Vítejte v mé ukázce Next.js a Reactu.</p>
         <p>
-          Na místní a další práce a projekty se můžete ve větším detailu mrknout na mých stránkách vytvořených klasicky v HTML, CSS a JS a ve frameworku FLASK <a href="https://brych.pythonanywhere.com/">na mém hlavním portfoliu</a>.
+          Na místní a další práce a projekty se můžete ve větším detailu mrknout na mých stránkách vytvořených klasicky v HTML, CSS a JS a ve frameworku FLASK na mém hlavním portfoliu. Odkaz tam i na GitHub přímo na tento projekt najdete v zápatí stránky dole.
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
