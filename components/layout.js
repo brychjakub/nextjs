@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { CSSTransition } from 'react-transition-group';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
@@ -44,7 +43,7 @@ export default function Layout({ children, home }) {
     },
   };
 
-  
+
   const slideInFromLeftVariants = {
     hidden: {
       x: '-100%',

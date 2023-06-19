@@ -65,16 +65,21 @@
 }
 
 .navbarLink {
-  color: #0000008a;
-  text-decoration: none;
-  margin-left: 30px;
+  margin-left: 33px;
   margin-top: 10px;
-  transition: box-shadow 0.3s ease;
-  padding: 0;
+  margin-bottom: 10px;
+  transition: box-shadow 0.3s ease, box-shadow 0.3s ease;;
+  display: flex;
+  padding:0;
+  align-items: center;
+
 }
 
 .navbarLink:hover {
   box-shadow: 3px 3px 0px rgba(19, 46, 19, 0.3);
+  position: relative;
+  top: -3px;
+  bottom: -3px;
 }
 
 .footer {

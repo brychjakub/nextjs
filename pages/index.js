@@ -3,8 +3,25 @@ import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
-export default function Home({ allPostsData }) {
+export default function Home() {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const linkVariants = {
+    initial: { scale: 1 },
+    hovered: { scale: 1.2 },
+  };
+
   return (
     <Layout home>
       <Head>
@@ -19,14 +36,46 @@ export default function Home({ allPostsData }) {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Výběrové projekty </h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, title}) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`projects/${id}`}>{id}</Link>
-              <br />
-              <small className={utilStyles.lightText}>
-              </small>
+        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <motion.div
+      
+      style={{ display: 'inline-block', marginRight: '20px' }}
+      className="link"
+        variants={linkVariants}
+        initial="initial"
+        animate={isHovered ? 'hovered' : 'initial'}
+        transition={{ duration: 0.5 }}
+      >
+          
+            <li className={utilStyles.listItem}>
+              <Link href={`projects/volba`}>volba</Link>
             </li>
-          ))}
+            </motion.div>
+      {isHovered && (
+        <motion.div
+        style={{ display: 'inline-block', marginLeft: '20px' }}
+        className="link"
+          variants={linkVariants}
+          initial="initial"
+          animate="hovered"
+          transition={{ duration: 0.5 }}
+        >
+                      <li className={utilStyles.listItem}>
+
+              <Link href={`projects/volba`}>volba</Link>
+              </li>
+
+        </motion.div>
+        )}
+            </div>
+
+
+            <li className={utilStyles.listItem}>
+
+              <Link href={`projects/hra`}>hra</Link>
+
+            </li>
+          
 
         </ul>
       </section>
