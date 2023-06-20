@@ -53,11 +53,11 @@
 }
 .emoji {
   width: 30%;
-margin-top: 20px;
+  margin-top: 20px;
 }
 .spaceship {
   width: 70px;
-margin-top: 20px;
+  margin-top: 20px;
 }
 
 .link-container {
@@ -65,5 +65,14 @@ margin-top: 20px;
 }
 
 .link {
-  margin-right: 10px;
+  position: relative;
+  transition: all 0.5s ease;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
 }
