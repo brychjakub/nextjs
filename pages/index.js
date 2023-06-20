@@ -13,11 +13,11 @@ export default function Home() {
   const handleMouseOver = () => {
     if (hoverCount.current < 4) {
       if (hoverCount.current === 3) {
-        setPosition({ right: "0", bottom: "0" }); // position at the right lower corner
+        setPosition({ left: "0", top: "10px" });
       } else {
         setPosition({
-          left: `${Math.random() * 500}%`,
-          top: `${Math.random() * 500}%`
+          left: `${Math.random() * 350 - 100}%`,
+          top: `${Math.random() * 350 - 100}%`
         });
       }
       hoverCount.current += 1;
@@ -102,6 +102,7 @@ export default function Home() {
                 style={position}
                 onMouseOver={handleMouseOver}
                 onClick={handleClick}
+                onTouchStart={handleMouseOver}
               >
                 hra
               </Link>
